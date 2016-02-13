@@ -3,3 +3,5 @@
 *.z1
 obj_z1/*
 obj_z1/
+symbols.c
+symbols.h
