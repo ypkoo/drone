@@ -38,6 +38,10 @@ recv_bc(struct broadcast_conn *c, const linkaddr_t *from)
 	struct drone_msg *msg = (struct drone_msg *) packetbuf_dataptr();
 	int i;
 
+  for(i=0; i<NODE_NUM; i++)
+    printf("%d ", msg->received_ids[i]);
+  printf("\n");
+
 	for(i=0; i<NODE_NUM; i++)
 	{
 		if(msg->received_ids[i] == node_id)

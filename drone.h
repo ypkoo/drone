@@ -7,7 +7,7 @@
 struct drone_msg
 {
 	char msg[MSG_LEN];
-	int received_ids[NODE_NUM];
+	uint8_t received_ids[NODE_NUM];
 };
 
 #endif

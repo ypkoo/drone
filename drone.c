@@ -12,7 +12,7 @@ static struct broadcast_conn bc;
 static struct unicast_conn uc;
 
 static char data_from_sensors[NODE_NUM][MSG_LEN];
-static int received_ids[NODE_NUM];
+static uint8_t received_ids[NODE_NUM];
 static int receive_cnt;
 
 static void
@@ -50,7 +50,7 @@ recv_uc(struct unicast_conn *c, const linkaddr_t *from)
   }
 
   strcpy(data_from_sensors[receive_cnt], packetbuf_dataptr());
-  received_ids[receive_cnt] = from->u8[0];
+  received_ids[receive_cnt] = (uint8_t)from->u8[0];
   receive_cnt++;
 }
 
