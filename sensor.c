@@ -29,7 +29,9 @@ static void
 send_data_to_drone(const linkaddr_t *from)
 { 
   packetbuf_copyfrom(msg_to_send, strlen(msg_to_send));
-  unicast_send(&uc, &drone_addr);
+  printf("send to %d\n", from->u8[0]);
+//  unicast_send(&uc, &drone_addr);
+  unicast_send(&uc, from);
 }
 
 static void
@@ -52,7 +54,11 @@ recv_bc(struct broadcast_conn *c, const linkaddr_t *from)
            from->u8[0]);
   //drone_addr = *from;
 
-  ctimer_set(&ct, (random_rand() & CLOCK_SECOND) * 0.1, send_data_to_drone, from);
+
+  packetbuf_copyfrom(msg_to_send, strlen(msg_to_send));
+  printf("send to %d\n", from->u8[0]);
+  unicast_send(&uc, from);
+//  ctimer_set(&ct, (random_rand() % CLOCK_SECOND) * 0.01, send_data_to_drone, from);
 }
 
 static void
